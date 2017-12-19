@@ -1,0 +1,23 @@
+{
+  "name": "serverless_backend",
+  "version": "1.0.0",
+  "description": "teleclaw serverless",
+  "main": "handler.js",
+  "scripts": {
+    "test": "serverless invoke local --function clearIdle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/teleclaw/serverless_backend.git"
+  },
+  "author": "chris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/teleclaw/serverless_backend/issues"
+  },
+  "homepage": "https://gitlab.com/teleclaw/serverless_backend#README",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "request": "^2.83.0"
+  }
+}

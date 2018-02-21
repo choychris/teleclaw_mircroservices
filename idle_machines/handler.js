@@ -2,8 +2,7 @@
 
 const request = require('request');
 const Promise = require('bluebird');
-const baseUrl = 'http://localhost:3000';
-const accessToken = 'Bwk8gIzzlF8FmwmV3Mxl0cF5MoX9eA8oH2z76AHf0JedOz0ZFlBq1C7VCpI76rSV';
+const { TELECLAW_API, TELECLAW_ACCESS_TOKEN } = process.env; 
 
 module.exports.clear = (event, context, callback) => {
   function generateJSONAPI(url, filter){
@@ -19,10 +18,10 @@ module.exports.clear = (event, context, callback) => {
         }
       }
     }
-    var api = generateJSONAPI(`${baseUrl}/api/machines?access_token=${accessToken}`,filter);
+    var api = generateJSONAPI(`${TELECLAW_API}/api/machines?access_token=${TELECLAW_ACCESS_TOKEN}`,filter);
     request(api, (err, res, body)=>{
       let machines = JSON.parse(body);
-      console.log('machines : ', machines)
+      //console.log('machines : ', machines)
       if(machines.length > 0){
         machines.map(machine=>{
           //if machine has not update in last 9 sec, clean it.
@@ -41,7 +40,7 @@ module.exports.clear = (event, context, callback) => {
         status: 'playing'
       }
     }
-    var api = generateJSONAPI(`${baseUrl}/api/machines?access_token=${accessToken}`,filter);
+    var api = generateJSONAPI(`${TELECLAW_API}/api/machines?access_token=${TELECLAW_ACCESS_TOKEN}`,filter);
     request(api, (err, res, body)=>{
       let machines = JSON.parse(body);
       //console.log('machines : ', machines)
@@ -76,8 +75,8 @@ module.exports.clear = (event, context, callback) => {
 
   //api to find for next reservation
   function nextReservation(machineId){
-    request(`${baseUrl}/api/reservations/${machineId}/endEngage?access_token=${accessToken}`, (err, res, body)=>{
-      //console.log(body);
+    request(`${TELECLAW_API}/api/reservations/${machineId}/serverlessWorker?access_token=${TELECLAW_ACCESS_TOKEN}`, (err, res, body)=>{
+      console.log(body);
       if(err){
         console.log("err in next reservation");
       }
@@ -88,7 +87,7 @@ module.exports.clear = (event, context, callback) => {
   function updateMachine(machineId){
     let option = {
       method: 'PATCH',
-      url: `${baseUrl}/api/machines/${machineId}?access_token=${accessToken}`,
+      url: `${TELECLAW_API}/api/machines/${machineId}?access_token=${TELECLAW_ACCESS_TOKEN}`,
       headers: {
         "Content-type": "application/json"
       },
@@ -119,5 +118,5 @@ module.exports.clear = (event, context, callback) => {
   // callback(null, response);
 
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+  callback(null, { message: 'Invoke success', event });
 };

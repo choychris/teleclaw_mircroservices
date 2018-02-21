@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws-nodejs # NOTE: update this with your service name
+service: clear_idle_machines # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,9 +20,14 @@ service: aws-nodejs # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: dev
+  stage: ${opt:stage}
   profile: teleclaw
   region: ap-southeast-1
+  environment: 
+    STAGE: ${opt:stage}
+    TELECLAW_API: ${file(../serverless.env.yml):${opt:stage}.TELECLAW_API}
+    TELECLAW_ACCESS_TOKEN: ${file(../serverless.env.yml):${opt:stage}.TELECLAW_ACCESS_TOKEN}
+
 
 # you can overwrite defaults here
 #  stage: dev
@@ -62,7 +67,7 @@ functions:
     handler: handler.clear
     events: 
       - schedule: 
-          rate: rate(1 minutes)
+          rate: rate(30 minutes)
           enable: false
           
 #    The following are a few example events you can configure

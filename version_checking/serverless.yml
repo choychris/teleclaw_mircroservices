@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: version_checking
+service: versionServices
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -25,8 +25,6 @@ provider:
   region: ap-southeast-1
   environment: 
     STAGE: ${opt:stage}
-    TELECLAW_API: ${file(../serverless.env.yml):${opt:stage}.TELECLAW_API}
-    TELECLAW_ACCESS_TOKEN: ${file(../serverless.env.yml):${opt:stage}.TELECLAW_ACCESS_TOKEN}
     GITLAB_TOKEN: ${file(../serverless.env.yml):${opt:stage}.GITLAB_TOKEN}
 
 # you can overwrite defaults here
@@ -63,12 +61,20 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  checkVersion:
-    handler: handler.checkVersion
+  releaseStatus:
+    handler: handler.releaseStatus
     events:
       - http:
-        path: version
-        method: get
+          path: releaseStatus
+          method: post
+          cors: true
+  versionCheck:
+    handler: handler.versionCheck
+    events:
+      - http:
+          path: versionCheck
+          method: post
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

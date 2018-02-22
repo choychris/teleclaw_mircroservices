@@ -1,0 +1,26 @@
+{
+  "name": "serverless_backend",
+  "version": "1.0.0",
+  "description": "teleclaw serverless",
+  "main": "handler.js",
+  "scripts": {
+    "test:vcheck": "serverless invoke local --function versionCheck -s dev -p ./mock_data.json",
+    "test:releaseStatus": "serverless invoke local --function releaseStatus -s dev -p ./mock_data.json",
+    "deploy:dev": "serverless deploy -s dev -r ap-southeast-1",
+    "deploy": "serverless deploy -s prod -r ap-southeast-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/teleclaw/serverless_backend.git"
+  },
+  "author": "chris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/teleclaw/serverless_backend/issues"
+  },
+  "homepage": "https://gitlab.com/teleclaw/serverless_backend#README",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "request": "^2.83.0"
+  }
+}

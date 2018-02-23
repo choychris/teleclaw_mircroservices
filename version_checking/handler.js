@@ -42,6 +42,11 @@ module.exports.releaseStatus = (event, context, callback) => {
           break;
         }
       }
+      return Promise.all(tagArray)
+    }).then(()=>{
+      if(responseObj.releaseStatus === undefined){
+        callback(null, response.success({"message": "version_not_found"}));
+      }
     }).catch(error=>{
       console.log(error)
       callback(null, response.failure(error));

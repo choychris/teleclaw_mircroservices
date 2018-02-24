@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: clear_idle_machines # NOTE: update this with your service name
+service: clearIdleMachines # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -68,7 +68,7 @@ functions:
     events: 
       - schedule: 
           rate: rate(30 minutes)
-          enable: false
+          enabled: false
           
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

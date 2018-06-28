@@ -1,0 +1,14 @@
+{
+  "name": "trackvote",
+  "version": "1.0.0",
+  "description": "track teleclaw votes",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chrischoy",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.234.1"
+  }
+}

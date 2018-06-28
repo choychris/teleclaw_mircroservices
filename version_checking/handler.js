@@ -27,9 +27,9 @@ function requestToGitlab(){
 module.exports.releaseStatus = (event, context, callback) => {
 
   //console.log('body data', event.body);
-  //let { version, os } = event.body;
-  let data = JSON.parse(event.body);
-  let { version, os } = data;
+  let { version, os } = event.body;
+  //let data = JSON.parse(event.body);
+  //let { version, os } = data;
   let tagName = `${version}-${os}`;
   let responseObj = {};
 

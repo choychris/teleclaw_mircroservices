@@ -4,10 +4,9 @@
   "description": "teleclaw serverless",
   "main": "handler.js",
   "scripts": {
-    "test": "serverless invoke local --function clearIdle -s dev",
-    "deploy:dev": "serverless deploy -s dev -r ap-southeast-1",
+    "test": "serverless invoke local --function distribute -s dev",
     "deploy": "serverless deploy -s prod -r ap-southeast-1",
-    "clean": "serverless invoke local --function clearIdle -s prod"
+    "localInvoke": "serverless invoke local --function distribute -s prod"
   },
   "repository": {
     "type": "git",
